@@ -1,0 +1,62 @@
+* NOctaHub - Nested Hub Limited to Eight Members
+
+NOctaHub is suppose to be an optimization on use of distributed ledgers. Bitcoin
+is the first and most famous example which uses its ledger to keep track of
+credit of participants currently some people are using it as money.
+It uses asymmetric cryptography with a simple stack based (Forth like) 
+scripting language for performing transactions and change state of the ledger.
+
+Most obvious issue in the ledgers like this is scalablility, As network
+participants increases more transactions will occur on the ledger. The issue
+is that all users should audit the ledger to verify the integrity of it.
+With the current technologies we have the bottleneck is at communication.
+And it can lead to two scenarios. First option would be to sacrifice
+distributed property of the ledger for those users whom have
+lower network bandwidth. And second option is to put a limit on how much
+can be written on the ledger over time (At the moment bitcoin
+consensus has limited the blocksize to about 2MB every 10 minutes). 
+
+In the rest of this document I'm going to use the word bitcoin to refer
+to any programmable distributed ledger.
+
+NOctaHub has composed of two optimizations. OctaHub, And nesting hubs to 
+form a tree of members. Which has an exponential effect OctaHub. Nesting
+these hubs four times allows up to 4096 members to exchange credit.
+
+NOctaHub's optimizations allows users to use less space on bitcoin. The same
+way lightning in bitcoin is intended to do the same. By using the scripting 
+features of bitcoin users can get into groups to perform changes
+on their credit or any kind of data. They can keep changes to themselves and
+only notify the final change to ledger. Note, Eltoo is another example of doing the
+same thing more efficiently Its not yet available for use (Q1 2019).
+
+Assuming eight parties jointly have access to a single entry on the ledger. 
+OctaHub's main function is to split these coins with their credit to these
+parties at the event that anyone needs to leave. Either they went offline for
+a long time or they just want to leave the group unilaterally. It is designed
+to use the least space possible on bitcoin chain that enables this group
+to divide in two or more.
+
+I would imagine it is possible to organize parties more than eight in a nested
+fashion to form a tree were all participants are at leafs. And then higher
+levels are multi-sig of participants in that hierarchy.
+
+These two optimizations can exist in two applications. 
+Eltoo and Traceable Timestamping. This introduction has very little 
+technical description. I've put some thought into using this on Eltoo. Which
+i think it would be possible.
+
+This feature requires schnorr MuSig and SIGHASH_NO_INPUT upgrade on
+bitcoin network.
+
+Why eight participant is the limit suitable for this setup? The idea is to
+pre-sign a set of transactions that would be possible have a set of scenarios
+that will end up with coin-split resulting in two or more coins.
+Meaning output coins may still be a multi-sig for sub-set of existing
+participants. For eight participants members should at least 
+sign 256 transactions to have all possible scenarios.
+
+Simplest way to form all possible scenarios is to think of each participants as
+a bit on a byte. zeros are in group A and ones are in group B.
+
+
