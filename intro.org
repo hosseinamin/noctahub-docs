@@ -60,3 +60,46 @@ Simplest way to form all possible options is to think of each participants as
 a bit on a byte. zeros are in group A and ones are in group B.
 
 
+** How a multi-party (floating) transaction can have multiple paths?
+
+By paths in this case i mean possible split combinations. And building on top
+of them.
+
+If we consider all paths for floating transactions do not share same public keys
+when a transaction gets confirmed. It invalidates all the previous signed
+transactions. In case Eltoo the confirmed tx waits until =OP_CSV= reaches.
+Until then update signatures are accepted.
+
+One thing I'm not sure about Eltoo is that at setup stage a transaction has
+generated and broadcasted and participants have access to settlement tx after
+that which they can broadcast at anytime. I'm wondering, If There's an exiting
+multi-sig between participants in a *single coin*, Can it be considered as
+ok for setup transaction?
+
+The issue is probably related to having *sighash-single* for first tx.
+Which will result in mitigating the issue with pre-defined fee for first tx.
+Or using child-pays-for-parent at event of mempool congestion.
+
+** How nesting can work on Eltoo?
+
+Most difficult issue in this part is to figure out order of communications.
+And correct control for each party.
+
+The idea is a group of parties can own a single coin jointly. And at event of
+leaving, The output coin has their own rules (inner Eltoo).
+
+OctaHub allows any party to remove itself or others remove it. Which is crucial
+when number of participants increases. This unilatiral action allows for the hub
+to live on with writing only necessary split or joins on the chain.
+
+When settlement coin of Eltoo tx is multi-sig of an entity on the formed
+tree closer to leafs. It allows for parties on that coin to perform their own
+update/settlement at the event when higher level Eltoo is over.
+
+So a user in a four level deep NOctaHub can get its coin by waiting four times
+the amount of regular Eltoo.
+
+Plus side of this combination allows for inner Eltoo's to perform their updates
+when all participants of that coin do exist. Even if other nodes have offline
+users.
+
