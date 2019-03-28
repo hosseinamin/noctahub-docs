@@ -10,7 +10,7 @@ Most obvious issue in the ledgers like this is scalablility, As network
 participants increases more transactions will occur on the ledger. The issue
 is that all users should audit the ledger to verify the integrity of it.
 With the current technologies we have the bottleneck is at communication.
-And it can lead to two scenarios. First option would be to sacrifice
+And it can lead to two options. First option would be to sacrifice
 distributed property of the ledger for those users whom have
 lower network bandwidth. And second option is to put a limit on how much
 can be written on the ledger over time (At the moment bitcoin
@@ -50,13 +50,13 @@ This feature requires schnorr MuSig and SIGHASH_NO_INPUT upgrade on
 bitcoin network.
 
 Why eight participant is the limit suitable for this setup? The idea is to
-pre-sign a set of transactions that would be possible have a set of scenarios
+pre-sign a set of transactions that would be possible have a set of options
 that will end up with coin-split resulting in two or more coins.
 Meaning output coins may still be a multi-sig for sub-set of existing
 participants. For eight participants members should at least 
-sign 256 transactions to have all possible scenarios.
+sign 256 transactions to have all possible options.
 
-Simplest way to form all possible scenarios is to think of each participants as
+Simplest way to form all possible options is to think of each participants as
 a bit on a byte. zeros are in group A and ones are in group B.
 
 
